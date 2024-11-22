@@ -1,0 +1,124 @@
+print("Spectral XSX GUI Has Been Loaded Successfully!")
+print("Thanks For Using Spectral XSX GUI!")
+print("This GUI Has Been Made By Vortex!")
+local S=Instance.new("ScreenGui")local M=Instance.new("Frame")local A=Instance.new("TextLabel")local B=Instance.new("TextBox")local C=Instance.new("TextButton")local D=Instance.new("TextButton")local E=Instance.new("TextLabel")local F=Instance.new("TextButton")local G=Instance.new("TextLabel")local H=Instance.new("TextLabel")local I=Instance.new("TextButton")local J=Instance.new("TextLabel")
+S.Name="Spectral XSX GUI"
+S.ResetOnSpawn=false
+S.Parent=game.Players.LocalPlayer:WaitForChild("PlayerGui")
+M.Name="MainFrame"
+M.Parent=S
+M.BackgroundColor3=Color3.fromRGB(35,35,35)
+M.BorderSizePixel=0
+M.Position=UDim2.new(0.8,0,0.7,0)
+M.Size=UDim2.new(0,400,0,300)
+M.Active=true
+M.Draggable=true
+H.Name="Title"
+H.Parent=M
+H.BackgroundColor3=Color3.fromRGB(25,25,25)
+H.BorderSizePixel=0
+H.Size=UDim2.new(1,0,0.2,0)
+H.Font=Enum.Font.SourceSansBold
+H.Text="Spectral XSX GUI"
+H.TextColor3=Color3.fromRGB(255,255,255)
+H.TextScaled=true
+A.Name="SpeedLabel"
+A.Parent=M
+A.Position=UDim2.new(0.05,0,0.25,0)
+A.Size=UDim2.new(0,150,0,30)
+A.Text="Speed:"
+A.TextColor3=Color3.fromRGB(255,255,255)
+A.Font=Enum.Font.SourceSans
+A.TextScaled=true
+B.Name="SpeedInput"
+B.Parent=M
+B.Position=UDim2.new(0.4,0,0.25,0)
+B.Size=UDim2.new(0,150,0,30)
+B.PlaceholderText="50"
+B.Font=Enum.Font.SourceSans
+B.TextScaled=true
+C.Name="SetSpeedButton"
+C.Parent=M
+C.Position=UDim2.new(0.05,0,0.35,0)
+C.Size=UDim2.new(0,300,0,30)
+C.Text="Set Speed"
+C.Font=Enum.Font.SourceSans
+C.TextScaled=true
+D.Name="NoClipButton"
+D.Parent=M
+D.Position=UDim2.new(0.05,0,0.45,0)
+D.Size=UDim2.new(0,300,0,30)
+D.Text="Toggle Noclip"
+D.Font=Enum.Font.SourceSans
+D.TextScaled=true
+E.Name="NoClipLabel"
+E.Parent=M
+E.Position=UDim2.new(0.05,0,0.55,0)
+E.Size=UDim2.new(0,300,0,30)
+E.Text="Noclip: OFF"
+E.Font=Enum.Font.SourceSans
+E.TextScaled=true
+F.Name="ESPButton"
+F.Parent=M
+F.Position=UDim2.new(0.05,0,0.65,0)
+F.Size=UDim2.new(0,300,0,30)
+F.Text="Toggle ESP"
+F.Font=Enum.Font.SourceSans
+F.TextScaled=true
+G.Name="ESPLabel"
+G.Parent=M
+G.Position=UDim2.new(0.05,0,0.75,0)
+G.Size=UDim2.new(0,300,0,30)
+G.Text="ESP: OFF"
+G.Font=Enum.Font.SourceSans
+G.TextScaled=true
+I.Name="InfJumpButton"
+I.Parent=M
+I.Position=UDim2.new(0.05,0,0.85,0)
+I.Size=UDim2.new(0,300,0,30)
+I.Text="Toggle Infinite Jump"
+I.Font=Enum.Font.SourceSans
+I.TextScaled=true
+J.Name="InfJumpLabel"
+J.Parent=M
+J.Position=UDim2.new(0.05,0,0.95,0)
+J.Size=UDim2.new(0,300,0,30)
+J.Text="Infinite Jump: OFF"
+J.Font=Enum.Font.SourceSans
+J.TextScaled=true
+
+local CloseButton = Instance.new("TextButton")
+CloseButton.Name = "CloseButton"
+CloseButton.Parent = M
+CloseButton.Position = UDim2.new(0.9, -20, 0.05, 0)  -- Position it at the top-right corner
+CloseButton.Size = UDim2.new(0, 20, 0, 20)  -- Small button size
+CloseButton.Text = "X"  -- Text on the button
+CloseButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)  -- Red background for the button
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)  -- White text
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.TextScaled = true
+
+CloseButton.MouseButton1Click:Connect(function()
+    S:Destroy()  -- This will remove the entire ScreenGui, closing the GUI
+end)
+
+local K=false
+local L=false
+local M=false
+local N=game.Players.LocalPlayer
+local O=N.Character:WaitForChild("Humanoid")
+local P=game:GetService("RunService").Stepped
+local Q=game:GetService("UserInputService").JumpRequest
+local R=function()S:Destroy()end
+local S=function()local T=tonumber(B.Text)if T then O.WalkSpeed=T end end
+local T=function()K=not K E.Text="Noclip: "..(K and"ON"or"OFF")end
+local U=function()if K then for _,V in pairs(N.Character:GetDescendants())do if V:IsA("BasePart")and V.CanCollide then V.CanCollide=false end end end end
+local V=function()L=not L G.Text="ESP: "..(L and"ON"or"OFF")for _,W in pairs(game.Players:GetPlayers())do if W~=N then if L then if not W.Character:FindFirstChild("ESP")then local X=Instance.new("Highlight",W.Character)X.Name="ESP"if W.Team then X.FillColor=W.Team.TeamColor.Color else X.FillColor=Color3.fromRGB(255,0,0)end end else if W.Character:FindFirstChild("ESP")then W.Character.ESP:Destroy()end end end end end
+local W=function()M=not M J.Text="Infinite Jump: "..(M and"ON"or"OFF")end
+local X=function()if M then N.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)end end
+I.MouseButton1Click:Connect(W)
+F.MouseButton1Click:Connect(V)
+D.MouseButton1Click:Connect(T)
+C.MouseButton1Click:Connect(S)
+P:Connect(U)
+Q:Connect(X)
